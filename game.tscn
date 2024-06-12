@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7lggvg3gflbv"]
+
+[ext_resource type="Script" path="res://PlayerSpawn.gd" id="1_gx8b3"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_53j36"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a3knf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_x25la"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="PlayerSpawn" type="Marker3D" parent="."]
+transform = Transform3D(-0.0428871, 0, 0.99908, 0, 1, 0, -0.99908, 0, -0.0428871, -9.0175, 0, 18.3301)
+script = ExtResource("1_gx8b3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.341707, -0.275823, 0.89842, 0.47796, 0.772099, 0.418829, -0.809191, 0.572526, -0.131999, 5.56748, 3.51807, -1.31908)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+fov = 45.0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" groups=["GameHolderCamera"]]
+script = ExtResource("2_53j36")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(31.0567, 0, 0, 0, 0.144958, 0, 0, 0, 56.4886, 0, -2.72516, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_a3knf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+mesh = SubResource("BoxMesh_x25la")

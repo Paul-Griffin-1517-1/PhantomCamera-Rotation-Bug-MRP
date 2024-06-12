@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://cfcucq2oceyk"]
+
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_0dj3a"]
+[ext_resource type="Script" path="res://ThirdPersonCamera.gd" id="1_kdgby"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_mkegq"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="3_gvhf4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bvbu6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_46y77"]
+
+[sub_resource type="Resource" id="Resource_tmr7g"]
+script = ExtResource("2_mkegq")
+duration = 0.1
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_8ifym"]
+script = ExtResource("3_gvhf4")
+cull_mask = 1048575
+h_offset = 0.0
+v_offset = 0.0
+projection = 0
+fov = 29.5
+size = 1.0
+frustum_offset = Vector2(0, 0)
+near = 0.05
+far = 4000.0
+
+[node name="Player" type="CharacterBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_bvbu6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.475481, 0, 0, 0, 0.0618488, 0.471441, 0, -0.471441, 0.0618488, 0, 0.470508, -0.192008)
+mesh = SubResource("CapsuleMesh_bvbu6")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_46y77")
+
+[node name="ThirdPersonCamera" type="Node3D" parent="."]
+script = ExtResource("1_kdgby")
+
+[node name="PhantomCamera3D" type="Node3D" parent="ThirdPersonCamera" node_paths=PackedStringArray("follow_target") groups=["ThirdPersonCamera"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21, 11.735)
+script = ExtResource("1_0dj3a")
+follow_mode = 6
+follow_target = NodePath("../..")
+tween_resource = SubResource("Resource_tmr7g")
+camera_3d_resource = SubResource("Resource_8ifym")
+follow_offset = Vector3(0, 1.21, 0)
+follow_distance = 11.735
+spring_length = 11.735
