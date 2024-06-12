@@ -11,7 +11,7 @@
 
 [sub_resource type="Resource" id="Resource_tmr7g"]
 script = ExtResource("2_mkegq")
-duration = 0.1
+duration = 0.25
 transition = 0
 ease = 2
 
@@ -20,12 +20,7 @@ script = ExtResource("3_gvhf4")
 cull_mask = 1048575
 h_offset = 0.0
 v_offset = 0.0
-projection = 0
-fov = 29.5
-size = 1.0
-frustum_offset = Vector2(0, 0)
-near = 0.05
-far = 4000.0
+fov = 25.0
 
 [node name="Player" type="CharacterBody3D"]
 
@@ -46,6 +41,7 @@ script = ExtResource("1_kdgby")
 [node name="PhantomCamera3D" type="Node3D" parent="ThirdPersonCamera" node_paths=PackedStringArray("follow_target") groups=["ThirdPersonCamera"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21, 11.735)
 script = ExtResource("1_0dj3a")
+priority = 10
 follow_mode = 6
 follow_target = NodePath("../..")
 tween_resource = SubResource("Resource_tmr7g")

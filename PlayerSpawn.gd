@@ -11,5 +11,5 @@ func spawn_player():
 	player = player_scene.instantiate()
 	add_sibling(player)
 	player.position = global_position
-	## Await a short timer here to disable the error. Alternatively, on_load_camera_rotate.call_deferred(). This code as is worked in PhantomCamera v7.0.6
+	## This code as is works in PhantomCamera v7.0.6. PP
 	player.get_node("ThirdPersonCamera").on_load_camera_rotate(rotation_degrees.y)
