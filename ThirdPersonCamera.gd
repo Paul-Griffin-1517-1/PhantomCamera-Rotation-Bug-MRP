@@ -19,9 +19,6 @@ var has_had_input := false
 var direction : Vector2 = Vector2.ZERO
 var direction_radians :
 	get:
-		# OLD VERSION MAY BE USEFUL: return phantom_camera_3d.get_third_person_rotation().y
-		## This SEEMS to technically be working, but it's not always giving me the result I "want" so figure out why.
-		## TODO: Make sure that this works with the MapCamera.
 		return camerahost._active_pcam_3d_glob_transform.basis.get_euler().y
 
 func _ready():
@@ -36,12 +33,6 @@ func _process(delta):
 		phantom_camera_3d.set_third_person_rotation_degrees( Vector3(clampf(old.x+direction.x,-85,45), old.y+direction.y, old.z))
 	else:
 		phantom_camera_3d.set_third_person_rotation_degrees(Vector3(0,0,0))
-
-## Contains the rotation angle for the spawn point or other objects if desired.
-var on_load_rotation := 0.0
-func on_load_camera_rotate(vector):
-	on_load_rotation = vector
-	phantom_camera_3d.set_third_person_rotation_degrees(Vector3(0,on_load_rotation,0))
 
 func get_camera_direction(delta):
 	direction.x = Input.get_axis("camera_down","camera_up")
