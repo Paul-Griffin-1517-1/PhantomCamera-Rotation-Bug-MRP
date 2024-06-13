@@ -54,3 +54,9 @@ func _input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		var viewport_transform : Transform2D = get_tree().root.get_final_transform()
 		mouse_input += event.xformed_by(viewport_transform).relative
+
+## Contains the rotation angle for the spawn point or other objects if desired.
+var on_load_rotation := 0.0
+func on_load_camera_rotate(vector):
+	on_load_rotation = vector
+	phantom_camera_3d.set_third_person_rotation_degrees(Vector3(0,on_load_rotation,0))

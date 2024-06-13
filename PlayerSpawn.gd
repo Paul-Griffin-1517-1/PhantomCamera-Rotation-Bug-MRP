@@ -12,4 +12,4 @@ func spawn_player():
 	add_sibling(player)
 	player.position = global_position
 	## This code as is works in PhantomCamera v7.0.6. PP
-	player.get_node("ThirdPersonCamera").set_third_person_rotation_degrees(Vector3(0,0,0))
+	player.get_node("ThirdPersonCamera").on_load_camera_rotate(rotation_degrees.y)
